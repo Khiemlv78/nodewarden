@@ -111,7 +111,7 @@ jobs:
             # Hard reset allows both upgrade and rollback
             git reset --hard "$TARGET_SHA"
           else
-            git merge "$TARGET_SHA" --no-edit
+            git merge "$TARGET_SHA" --no-edit --allow-unrelated-histories
           fi
 
       - name: Restore workflow file
