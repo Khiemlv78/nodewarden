@@ -135,10 +135,12 @@ jobs:
       - name: Summary
         run: |
           if [ "${{ steps.check.outputs.needs_update }}" = "true" ]; then
-            echo "### Synced successfully" >> $GITHUB_STEP_SUMMARY
-            echo "- **Mode:** ${{ steps.resolve.outputs.mode }}" >> $GITHUB_STEP_SUMMARY
-            echo "- **Tag:** ${{ steps.resolve.outputs.latest_tag || 'N/A (manual)' }}" >> $GITHUB_STEP_SUMMARY
-            echo "- **Commit:** \`${{ steps.resolve.outputs.target_sha }}\`" >> $GITHUB_STEP_SUMMARY
+          {
+            echo "### Synced successfully"
+            echo "- **Mode:** ${{ steps.resolve.outputs.mode }}"
+            echo "- **Tag:** ${{ steps.resolve.outputs.latest_tag || 'N/A (manual)' }}"
+            echo "- **Commit:** \`${{ steps.resolve.outputs.target_sha }}\`" 
+          } >> $GITHUB_STEP_SUMMARY
           else
             echo "### Nothing to update" >> $GITHUB_STEP_SUMMARY
           fi
